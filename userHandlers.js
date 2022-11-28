@@ -1,7 +1,7 @@
 const database = require("./database");
 
 const getUsers = (req, res) => {
-  const initialSql = "select * from users";
+  const initialSql = "select id, firstname, lastname, email, city, language from users";
   const where = [];
 
   if (req.query.city != null) {
@@ -61,7 +61,7 @@ const postUser = (req, res) => {
 
   database
     .query(
-      "INSERT INTO users(firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
+      "INSERT INTO users (firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
       [firstname, lastname, email, city, language, hashedPassword]
     )
     .then(([result]) => {
